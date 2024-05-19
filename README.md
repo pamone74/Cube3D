@@ -6,13 +6,15 @@ According to the provided PDF guide, there are two options for obtaining miniLib
 - 🥇 If opting for the version from the source, refer to the instructions provided on this GitHub repository:(https://github.com/42Paris/minilibx-linux).
 - 🥈 Additionally, you may find this documentation helpful for getting started: (https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#compilation-on-macos).
 
-Please Note: My goal is to make simplest doc, how we can achive 3D from 2D using ray casting. If you follow every steps carefully, i am pretty sure you can implement and understands it fully. 
+Please Note: My goal is to make simplest doc, how we can achive 3D from 2D using ray casting. If you follow every steps carefully, i am pretty sure you can implement and understands it fully and most of the functions we will use here, you may end up not needing them in the final project, so it is fine even if it does not follow the norms. 
 
 ### Step One: Configuring the Map
 If you have experience with the `so_long` project, these steps might be more familiar to you. However, for those like myself who haven't worked on `so_long`, extensive research was necessary to understand how to correctly insert maps.
 
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
+### This is the map i will be  using to illustrate and demonstrate the porocess:
+// map here
 ```C 
 void draw_line(void *mlx, void *win, int x0, int y0, int x1, int y1)
 {
@@ -35,6 +37,36 @@ void draw_line(void *mlx, void *win, int x0, int y0, int x1, int y1)
         y0 += sy;
     }
 }
+}
+
+// draw rectangle
+void draw_rect(void *mlx, void *win, int x, int y, int size)
+{
+// size is the tile. Lets say we have square tile, then we use that size to draw the rect
+  draw_line(mlx, win, x,y,x + size, y);
+  draw_line(mlx, win, x,y,x, y + size);
+  draw_line(mlx, win, x + size,y,x + size, y + size);
+  draw_line(mlx, win, x,y + size,x + size, y + size);
+}
+
+// Now we draw our 2D map using this function:
+void draw_2d_map(t_data data, void *mlx_ptr, void *win_ptr)
+{
+  int x = 0;
+  int y;
+  // The map is in 2D, with row and column, where row is the height and width is the column. So this loop  will loops through the map:
+  while(i < width)
+  {
+    y =0;
+    while(y < height)
+    {
+      if(tilemap[x][y]) == 1:
+        draw_rect(mlx_ptr, win_ptr, x * 50, 50); // I have decided to give the tile size of 50
+      y++;
+    }
+  i++;
+  }
+  
 }
 ```
 
