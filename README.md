@@ -60,11 +60,11 @@ void draw_2d_map(t_data data, void *mlx_ptr, void *win_ptr)
     y =0;
     while(y < height)
     {
-      if(tilemap[x][y]) == 1:
+      if(tilemap[x][y]) == 1
         draw_rect(mlx_ptr, win_ptr, x * 50, 50); // I have decided to give the tile size of 50
       y++;
     }
-  i++;
+    i++;
   }
   
 }
