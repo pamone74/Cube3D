@@ -1,4 +1,4 @@
-## Introducing My First RayCaster Using miniLibX
+## My First RayCaster Using miniLibX
 Before delving into the details, it's essential to ensure we have all the necessary resources at our disposal, particularly when working with C.<br>
 have at out disposal and as usal, we use C.<br>
 ### 📎Let's make sure the miniLibx is installed and working properly.
