@@ -6,12 +6,12 @@ According to the provided PDF guide, there are two options for obtaining miniLib
 - 🥇 If opting for the version from the source, refer to the instructions provided on this GitHub repository:(https://github.com/42Paris/minilibx-linux).
 - 🥈 Additionally, you may find this documentation helpful for getting started: (https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#compilation-on-macos).
 
-If minilibx is well obtained, then we can proceed.
-Let me give you a glimpse of the steps we will take. I will try to make this topic more easy and user friendly and will i will start from beginning to the end. 
+Please Note: My goal is to make simplest doc, how we can achive 3D from 2D using ray casting. If you follow every steps carefully, i am pretty sure you can implement and understands it fully. 
+
 ### Step One: Configuring the Map
 If you have experience with the `so_long` project, these steps might be more familiar to you. However, for those like myself who haven't worked on `so_long`, extensive research was necessary to understand how to correctly insert maps.
 
-#### Drawing Our 2D Map on the GPU
+#### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
 ```C 
 void draw_line(void *mlx, void *win, int x0, int y0, int x1, int y1)
