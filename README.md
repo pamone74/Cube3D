@@ -10,10 +10,9 @@ Please Note: My goal is to make simplest doc, how we can achive 3D from 2D using
 
 ### Step One: Configuring the Map
 If you have experience with the `so_long` project, these steps might be more familiar to you. However, for those like myself who haven't worked on `so_long`, extensive research was necessary to understand how to correctly insert maps.
-- 🗺️ Map will be a file with `.cub` extension which will be passed as a CML argument for example `.cube3D map.cub`. 
-- 🗺️ The parsing of the map consists of different terminologies and concepts, as of now, I will not focus much on parsing and the rest. The complete work will be on my repository, you can have a lok, but for now, we need to get started with the basic ideas of cube3D and most importantly, raycasting.
-- 🗺️ If ypu follow the subjects, there are rules that needs to be followed when parsing the map. Again as i said, I will not dive too deep into map parsing.
-Later on, i will update the parsing part and as for now, let me leave it as it is.
+- 🗺️ The map will be a file with a `.cub` extension, which will be passed as a command-line argument, for example, `.cube3D map.cub`.
+- 🗺️ Parsing the map involves various terminologies and concepts, but I won't focus on parsing details right now. You can check my repository for the complete work. For now, let's get started with the basic concepts of cube3D and, most importantly, raycasting.
+- 🗺️ There are specific rules to follow when parsing the map. However, as mentioned, I won't delve deeply into map parsing at this point. I'll update the parsing details later. For now, let's leave it as it is.
 
 
 #### Drawing Our 2D Map on the GUI or window
