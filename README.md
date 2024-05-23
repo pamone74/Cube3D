@@ -26,49 +26,49 @@ If you have experience with the `so_long` project, these steps might be more fam
   
   ## My header file cube3D.h
   ```C
-  #ifndef CUBE3D_H
-#define CUBE3D_H
-#define HEIGHT 800
-#define WIDTH 600
+	#ifndef CUBE3D_H
+	#define CUBE3D_H
+	#define HEIGHT 800
+	#define WIDTH 600
 
-// Map information
-#define WALL 1
-#define EMPTY 0
-#define NORTH N
-#define SOUTH S
-#define EAST E 
-#define WEST W 
+	// Map information
+	#define WALL 1
+	#define EMPTY 0
+	#define NORTH N
+	#define SOUTH S
+	#define EAST E 
+	#define WEST W 
 
-#include  <stdlib.h>
-typedef struct s_data{
-    void *img;
-    char *addr;
-    int bits_per_pixel;
-    int line_length;
-    int endian;
-}   t_data;
-
-
-typedef struct s_map_meta_data{
-    char *NO; // North texture
-    char *SO; // South texture
-    char *EA; // East texture
-    char *WE; // West texture
-    int color_floor;
-    int color_cieling;
-    char **map;
-}t_map_data;
-
-typedef struct s_player{
-    int player_pos_x;
-    int player_pos_y;
-    char player_view;
-
-}t_player;
+	#include  <stdlib.h>
+	typedef struct s_data{
+    		void *img;
+    		char *addr;
+    		int bits_per_pixel;
+    		int line_length;
+    		int endian;
+	}   t_data;
 
 
-// utils.c Later on we shall be adding some funcions here
-#endif
+	typedef struct s_map_meta_data{
+    		char *NO; // North texture
+  		char *SO; // South texture
+    		char *EA; // East texture
+    		char *WE; // West texture
+    		int color_floor;
+    		int color_cieling;
+    		char **map;
+	}t_map_data;
+
+	typedef struct s_player{
+    		int player_pos_x;
+    		int player_pos_y;
+    		char player_view;
+
+	}t_player;
+
+
+	// utils.c Later on we shall be adding some funcions here
+	#endif
   ```
 ### Makefile [Linux Environment]
 -  Please note that as of now, when i am writing this doc, i am using linux evn, but the configuration for the Mac OS, i will update it soon.
