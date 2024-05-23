@@ -10,6 +10,9 @@ Please Note: My goal is to make simplest doc, how we can achive 3D from 2D using
 
 ### Step One: Configuring the Map
 If you have experience with the `so_long` project, these steps might be more familiar to you. However, for those like myself who haven't worked on `so_long`, extensive research was necessary to understand how to correctly insert maps.
+🗺️ Map will be a file with `.cub` extension which will be passed as a CML argument for example `.cube3D map.cub`.
+🗺️ The parsing of the map consists of different terminologies and concepts, as of now, I will not focus much on parsing and the rest. The complete work will be on my repository, you can have a lok, but for now, we need to get started with the basic ideas of cube3D and most importantly, raycasting.
+🗺️ If ypu follow the subjects, there are rules that needs to be followed when parsing the map. Again as i said, I will not dive too deep into map parsing.
 
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
