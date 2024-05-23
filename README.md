@@ -13,7 +13,98 @@ If you have experience with the `so_long` project, these steps might be more fam
 - 🗺️ The map will be a file with a `.cub` extension, which will be passed as a command-line argument, for example, `.cube3D map.cub`.
 - 🗺️ Parsing the map involves various terminologies and concepts, but I won't focus on parsing details right now. You can check my repository for the complete work. For now, let's get started with the basic concepts of cube3D and, most importantly, raycasting.
 - 🗺️ There are specific rules to follow when parsing the map. However, as mentioned, I won't delve deeply into map parsing at this point. I'll update the parsing details later. For now, let's leave it as it is.
+  #### I strongly suggest that you follow along my codes so that we stay on the same track.
+  - First of all, this is how my files are organized:
+  - mlx
+      - libft
+      - get_next_line
+      - mlx_linux
+      - Makefile
+      - *.c
+      - .cub
+      - .h
+  
+  ## My header file cube3D.h
+  ```C
+  #ifndef CUBE3D_H
+#define CUBE3D_H
+#define HEIGHT 800
+#define WIDTH 600
 
+// Map information
+#define WALL 1
+#define EMPTY 0
+#define NORTH N
+#define SOUTH S
+#define EAST E 
+#define WEST W 
+
+#include  <stdlib.h>
+typedef struct s_data{
+    void *img;
+    char *addr;
+    int bits_per_pixel;
+    int line_length;
+    int endian;
+}   t_data;
+
+
+typedef struct s_map_meta_data{
+    char *NO; // North texture
+    char *SO; // South texture
+    char *EA; // East texture
+    char *WE; // West texture
+    int color_floor;
+    int color_cieling;
+    char **map;
+}t_map_data;
+
+typedef struct s_player{
+    int player_pos_x;
+    int player_pos_y;
+    char player_view;
+
+}t_player;
+
+
+// utils.c Later on we shall be adding some funcions here
+#endif
+  ```
+### Makefile [Linux Environment]
+-  Please note that as of now, when i am writing this doc, i am using linux evn, but the configuration for the Mac OS, i will update it soon.
+```Makefile
+
+NAME = cube3D
+FLAG = -Wall -Wextra -Werror
+CFLAGS = cc
+SRC = tezt.c utils.c
+OBJ = $(SRC:.c=.o)
+
+# Path to mlx_linux directory relative to mlx directory
+MLX_PATH = ./mlx_linux
+GNL_PATH = ./get_next_line
+LIBFT_PATH = ./libft
+
+all: $(NAME)
+
+%.o: %.c
+	$(CFLAGS) $(FLAG) -I/usr/include -I$(MLX_PATH) -O3 -c $< -o $@
+
+$(NAME): $(OBJ)
+	make -C $(MLX_PATH)
+	make -C $(LIBFT_PATH)
+	$(CFLAGS) $(OBJ) -L$(MLX_PATH) ./mlx_linux/libmlx.a  -L/usr/usr/lib ./mlx_linux/libmlx.a -lXext -lX11 -lm -lz -o $(NAME) $(GNL_PATH)/get_next_line.c $(GNL_PATH)/get_next_line_utils.c $(LIBFT_PATH)/libft.a
+
+clean: 
+	make clean -C $(MLX_PATH)
+	rm -f $(OBJ)
+fclean:
+	rm -f $(NAME)
+
+re: clean fclean all
+
+
+```
 
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
