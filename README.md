@@ -135,8 +135,8 @@ re: clean fclean all
 	11111111111111
   ```
 ### Explanantion of the map metadata
--- ➡️ NO this is the path for the texture of North wall. So you gonna need to have your texture in `.xpm` format . The `path_to` should be the path where you texture is located. For example if you have dir `img` and you have stored your textures for NORTH Wall, you can then replace `path_to` with the exact file path.
--- ➡️ Same applies for `SO South Wall`, `EA East Wall` and `WE West Wall`
+- ➡️ NO this is the path for the texture of North wall. So you gonna need to have your texture in `.xpm` format . The `path_to` should be the path where you texture is located. For example if you have dir `img` and you have stored your textures for NORTH Wall, you can then replace `path_to` with the exact file path.
+- ➡️ Same applies for `SO South Wall`, `EA East Wall` and `WE West Wall`
 
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
