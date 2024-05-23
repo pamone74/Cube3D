@@ -109,11 +109,13 @@ re: clean fclean all
 - And again, i am not following norm here, and this is not  final work.
 - Before moving forward, please add two c files in the root directory of mlx.
 - in the test, we will be doing the testing, and in utils we shall have functions for our cube3D.
-  
+
+### This is the map i will be  using to illustrate and demonstrate the porocess:
+// Please note that, this is a basic map, and i am assuming that it is correct and that there is no error... [meaning that no need for parsing] but forget about it, there is nothing as such, you must parse it. 
+
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
-### This is the map i will be  using to illustrate and demonstrate the porocess:
-// map here
+
 ```C 
 void draw_line(void *mlx, void *win, int x0, int y0, int x1, int y1)
 {
