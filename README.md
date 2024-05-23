@@ -114,7 +114,7 @@ re: clean fclean all
 // Please note that, this is a basic map, and i am assuming that it is correct and that there is no error... [meaning that no need for parsing] but forget about it, there is nothing as such, you must parse it. 
 - Add a file `map1.cub` on the root directory of mlx and paste this complete map meta data
   ```
-  NO imgs/xmp/wall/wall1.xpm
+NO imgs/xmp/wall/wall1.xpm
 SO imgs/xmp/wall/wall2.xpm
 EA imgs/xmp/wall/wall3.xpm
 WE imgs/xmp/wall/wall4.xpm
