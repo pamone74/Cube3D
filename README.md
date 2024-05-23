@@ -13,16 +13,18 @@ If you have experience with the `so_long` project, these steps might be more fam
 - 🗺️ The map will be a file with a `.cub` extension, which will be passed as a command-line argument, for example, `.cube3D map.cub`.
 - 🗺️ Parsing the map involves various terminologies and concepts, but I won't focus on parsing details right now. You can check my repository for the complete work. For now, let's get started with the basic concepts of cube3D and, most importantly, raycasting.
 - 🗺️ There are specific rules to follow when parsing the map. However, as mentioned, I won't delve deeply into map parsing at this point. I'll update the parsing details later. For now, let's leave it as it is.
-  #### I strongly suggest that you follow along my codes so that we stay on the same track.
-  - First of all, this is how my files are organized:
-  - mlx
-      - libft
-      - get_next_line
-      - mlx_linux
-      - Makefile
-      - *.c
-      - .cub
-      - .h
+ #### I strongly suggest that you follow along with my code so that we stay on the same track.
+- First of all, this is how my files are organized:
+  - `mlx`
+    - `libft`
+    - `get_next_line`
+    - `mlx_linux`
+    - `Makefile`
+    - `*.c`
+    - `.cub`
+    - `.h`
+
+
   
   ## My header file cube3D.h
   ```C
@@ -105,14 +107,14 @@ re: clean fclean all
 
 
 ```
-- since i want to keep this doc, simple and user friendly, we will be using just two `.c` files that's `test.c` and `utils.c`
-- And again, i am not following norm here, and this is not  final work.
-- Before moving forward, please add two c files in the root directory of mlx.
-- in the test, we will be doing the testing, and in utils we shall have functions for our cube3D.
+- To keep this document simple and user-friendly, we will use just two `.c` files: `test.c` and `utils.c`.
+- Note that I'm not strictly following coding norms here, and this is not the final version.
+- Before proceeding, please add the two `.c` files to the root directory of `mlx`.
+- `test.c` will be used for testing, while `utils.c` will contain functions for our cube3D.
 
-### This is the map i will be  using to illustrate and demonstrate the porocess:
-// Please note that, this is a basic map, and i am assuming that it is correct and that there is no error... [meaning that no need for parsing] but forget about it, there is nothing as such, you must parse it. 
-- Add a file `map1.cub` on the root directory of mlx and paste this complete map meta data
+### Here is the map I will use to illustrate and demonstrate the process:
+Please note that this is a basic map, and I am assuming it is correct with no errors (meaning no need for parsing). However, in reality, you must parse the map.
+- Add a file named `map1.cub` to the root directory of `mlx` and paste the complete map metadata.
   ```
 	NO path_to/wall1.xpm
 	SO path_to/wall2.xpm
@@ -134,10 +136,12 @@ re: clean fclean all
 	10000000000001
 	11111111111111
   ```
-### Explanantion of the map metadata
-- ➡️ NO this is the path for the texture of North wall. So you gonna need to have your texture in `.xpm` format . The `path_to` should be the path where you texture is located. For example if you have dir `img` and you have stored your textures for NORTH Wall, you can then replace `path_to` with the exact file path.
-- ➡️ Same applies for `SO South Wall`, `EA East Wall` and `WE West Wall`
-
+### Explanation of the Map Metadata
+- ➡️ `NO`: This specifies the texture path for the North wall. The texture should be in `.xpm` format. Replace `path_to` with the actual path where your texture is located. For example, if you have a directory named `img` and have stored your textures for the North wall there, replace `path_to` with the exact file path.
+- ➡️ Similarly, `SO` is for the South wall, `EA` is for the East wall, and `WE` is for the West wall.
+- ➡️ `F` specifies the color of the floor, and `C` specifies the color of the ceiling.
+- ➡️ The `1` represents a wall, and `0` represents empty space. Characters `N`, `W`, `E`, and `S` on the map indicate the player's position and initial facing direction. For example, if the character `N` is used, when the game starts, the player will face the North wall, meaning the player's Field of View (FOV) is towards the North wall. The same logic applies to the other characters.
+  
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
 
