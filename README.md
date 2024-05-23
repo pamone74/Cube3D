@@ -114,10 +114,10 @@ re: clean fclean all
 // Please note that, this is a basic map, and i am assuming that it is correct and that there is no error... [meaning that no need for parsing] but forget about it, there is nothing as such, you must parse it. 
 - Add a file `map1.cub` on the root directory of mlx and paste this complete map meta data
   ```
-	NO imgs/xmp/wall/wall1.xpm
-	SO imgs/xmp/wall/wall2.xpm
-	EA imgs/xmp/wall/wall3.xpm
-	WE imgs/xmp/wall/wall4.xpm
+	NO path_to/wall1.xpm
+	SO path_to/wall2.xpm
+	EA path_to/wall3.xpm
+	WE path_to/wall4.xpm
 
 	F 255,0,0
 	C 0,0,255
@@ -129,11 +129,14 @@ re: clean fclean all
 	10000010000001
 	10000000010001
 	10001000010001
-	100000N0000001
+	10000000000001
 	10000000000001
 	10000000000001
 	11111111111111
   ```
+### Explanantion of the map metadata
+-- ➡️ NO this is the path for the texture of North wall. So you gonna need to have your texture in `.xpm` format . The `path_to` should be the path where you texture is located. For example if you have dir `img` and you have stored your textures for NORTH Wall, you can then replace `path_to` with the exact file path.
+-- ➡️ Same applies for `SO South Wall`, `EA East Wall` and `WE West Wall`
 
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
