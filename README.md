@@ -77,7 +77,7 @@ If you have experience with the `so_long` project, these steps might be more fam
 NAME = cube3D
 FLAG = -Wall -Wextra -Werror
 CFLAGS = cc
-SRC = tezt.c utils.c
+SRC = test.c utils.c
 OBJ = $(SRC:.c=.o)
 
 # Path to mlx_linux directory relative to mlx directory
@@ -105,7 +105,11 @@ re: clean fclean all
 
 
 ```
-
+- since i want to keep this doc, simple and user friendly, we will be using just two `.c` files that's `test.c` and `utils.c`
+- And again, i am not following norm here, and this is not  final work.
+- Before moving forward, please add two c files in the root directory of mlx.
+- in the test, we will be doing the testing, and in utils we shall have functions for our cube3D.
+  
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
 ### This is the map i will be  using to illustrate and demonstrate the porocess:
