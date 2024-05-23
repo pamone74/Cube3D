@@ -112,6 +112,28 @@ re: clean fclean all
 
 ### This is the map i will be  using to illustrate and demonstrate the porocess:
 // Please note that, this is a basic map, and i am assuming that it is correct and that there is no error... [meaning that no need for parsing] but forget about it, there is nothing as such, you must parse it. 
+- Add a file `map1.cub` on the root directory of mlx and paste this complete map meta data
+  ```
+  NO imgs/xmp/wall/wall1.xpm
+SO imgs/xmp/wall/wall2.xpm
+EA imgs/xmp/wall/wall3.xpm
+WE imgs/xmp/wall/wall4.xpm
+
+F 255,0,0
+C 0,0,255
+
+11111111111111
+1001000E000001
+10000000000011
+11000010000001
+10000010000001
+10000000010001
+10001000010001
+100000N0000001
+10000000000001
+10000000000001
+11111111111111
+  ```
 
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
