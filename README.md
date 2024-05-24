@@ -74,6 +74,7 @@ If you have experience with the `so_long` project, these steps might be more fam
     		int color_floor;
     		int color_cieling;
     		char **map;
+  		int row;
 	}t_map_data;
 
 	typedef struct s_player{
@@ -84,7 +85,7 @@ If you have experience with the `so_long` project, these steps might be more fam
 	}t_player;
 
 
-	// utils.c Later on we shall be adding some funcions here
+	// utils.c | Later on we shall be adding some funcions here
 	#endif
   ```
 ### Makefile [Linux Environment]
@@ -160,9 +161,10 @@ Please note that this is a basic map, and I am assuming it is correct with no er
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
 
-1️⃣ In the `utils.c` file, add this function for extracting the mapdata. Please not that this is absolutely not effecient function but, it will do what we need for now. And add function prototype to the header file
-- `t_map_data* ft_extract_map(char *argv, int ac)`
+1️⃣  : In the `utils.c` file, add this function for extracting the mapdata. Please not that this is absolutely not effecient function but, it will do what we need for now. And add function prototype to the header file
+`t_map_data* ft_extract_map(char *argv, int ac)`
 ```C
+// ================================================ Extracting map data ===================================================================
 /*
 
     Please note that this is not effecient way of extracting map data, as i am assuming that everything is fine with the map: 
@@ -216,61 +218,152 @@ t_map_data* ft_extract_map(char **argv, int ac)
     return 0;
 }
 ```
-2️⃣ Also Add this functions for drawing line in `utils.` 
+2️⃣  : Also Add this functions for drawing line in `utils.`c and ou can add this to the header file `cube3D.h` `void ft_draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)`
 ```C 
+// ====================================== Draw Line Functions ===================================================================
+
+/*
+    Relax, you do not actaully needs this for submission unless otherwise
+    I wish i could explain this in simple term that you can unserstand. But if you know basic of math, that would be better.
+    okay, i hvae variables:
+        dx (change in x cordinates)
+        dy (changes in y cordinates)
+
+    Alright, let's break it down:
+
+    In mathematics, when we talk about drawing a line between two points, we often use the equation of a straight line:  y = mx + c , where  m  
+    is the slope of the line and  c  is the y-intercept. In the case of computer graphics, we're dealing with pixels on a screen, 
+    so  we don't directly use this equation. Instead, we use discrete points to approximate the line.
+
+    Here's how yvariables relate to this equation:
+    -  dx  represents the change in the x-coordinates of the two points, which is analogous to the change in the x-values of the equation.
+    -  dy  represents the change in the y-coordinates of the two points, which is analogous to the change in the y-values of the equation.
+    So, if we were to write the slope  m  using these variables, it would be  m = dy/dx.
+    In the code,  dx  is calculated as  x1 - x0 , which indeed gives us the change in x-coordinates. Similarly,  dy  is calculated as  y1 - y0 , 
+    giving us the change in y-coordinates.
+    So, in terms of our line equation,  dx  represents the horizontal distance between the starting and ending points, and  dy  represents the vertical 
+    distance between them. These are essential for determining how we should draw the line.
+
+    Understanding these changes helps us decide how to incrementally move from one pixel to another to accurately represent the line between the two given points 
+    on the screen.
+*/
 void draw_line(void *mlx, void *win, int x0, int y0, int x1, int y1)
 {
-  int dx = abs(x1 - x0); // Change in x
-  int dy = -abs(y1-y0); // change in y
-  int sx = x0 < x1 ? 1 : -1; // If the starting x coordinate is less than the ending x coordinate, move right (1), otherwise move left (-1).
-  int sy = y0 < y1 ? 1 : -1; //  If the starting y coordinate is less than the ending y coordinate, move down (1), otherwise move up (-1).
-  int err = dx + dy; // is the error term used to determine when to increment the y coordinate
-  int e2;
-  while (1) {
-    mlx_pixel_put(game->mlx, game->win, x0, y0, 0x0000FF00); // draws a pixel at the current coordinates (x0, y0) with the specified color.
-    if (x0 == x1 && y0 == y1) break; // checks if the current coordinates have reached the endpoint. If so, the loop breaks.
-    e2 = 2 * err; // calculates the doubled error term to compare against dx and dy
-    if (e2 >= dy) {
-        err += dy;
-        x0 += sx;
-    }
-    if (e2 <= dx) {
-        err += dx;
-        y0 += sy;
-    }
-}
-}
-
-// draw rectangle
-void draw_rect(void *mlx, void *win, int x, int y, int size)
-{
-// size is the tile. Lets say we have square tile, then we use that size to draw the rect
-  draw_line(mlx, win, x,y,x + size, y);
-  draw_line(mlx, win, x,y,x, y + size);
-  draw_line(mlx, win, x + size,y,x + size, y + size);
-  draw_line(mlx, win, x,y + size,x + size, y + size);
-}
-
-// Now we draw our 2D map using this function:
-void draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)
-{
-  int x = 0;
-  int y;
-  // The map is in 2D, with row and column, where row is the height and width is the column. So this loop  will loops through the map:
-  while(i < row)
-  {
-    y =0;
-    while(y < (int)strlen(tilemap[x]))  // I am type casting the strlen() to int beacause it returns size_t and out y is int. You can save yourself by making y, size_t
+    int dx = abs(x1-x0);
+    int dy = -abs(y1-y0);
+    int sx = x0 < x1 ? 1 : -1;
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy;
+    int e2;
+    while(1)
     {
-      if(tilemap[x][y]) == 1
-        draw_rect(mlx_ptr, win_ptr, x * 50, 50); // I have decided to give the tile size of 50
-      y++;
+        mlx_pixel_put(mlx, win, x0, y0, 0x0000FF00);
+        if (x0 == x1 && y0 == y1)
+            break;
+        e2 = 2 * err;
+        if(e2 >= dy)
+        {
+            err += dy;
+            x0 += sx;
+        }
+        if (e2 <= dx)
+        {
+            err += dx;
+            y0 += sy;
+        }
     }
-    i++;
-  }
-  
+
+}
+/*
+    I am drawing the rectangle using the line function i have created earlier. The size its like the measurment of the tile.
+*/
+
+void draw_rect(void *mlx, void * win, int x, int y, int size)
+{
+    draw_line(mlx, win, x, y, x + size , y);
+    draw_line(mlx, win, x, y, x  , y+ size);
+    draw_line(mlx, win, x + size, y, x+ size  , y + size );
+    draw_line(mlx, win, x, y + size , x + size , y+ size );
+}
+
+void ft_draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)
+{
+    int x;
+    int y;
+    x = 0;
+    
+    while(x < row)
+    {
+        y = 0;
+        while(y < (int)strlen(tilemap[x])) 
+        {
+            if(tilemap[x][y] == '1')
+            {
+                //printf("%c", tilemap[x][y]);
+                // printf("cord (x = %d, y = %d)\n", x, y);
+
+               draw_rect(mlx_ptr, win_ptr,y * 50, x*50, 50); 
+               // I am sca.ling the x and y cordinates by 50, and giving tile size to be 50, you can chose according to your needs, but mind that it should be relative to 
+               //you screen width and height ese it will overflow. 
+            }
+            else if (strchr("NSEW", tilemap[x][y]))
+            {
+               // player's position
+                draw_rect(mlx_ptr, win_ptr,y * 50, x*50, 10);
+            }
+            y++;
+        }
+        x++;
+    }
 }
 ```
 
-Keep in mind that your map may differ from mine; currently, I've only drawn the walls, represented by `1`.
+If every things are woring just fine, then we can go ahead and test our 2D map. if file `test.c`, add this main functions below: if you do not have `test.c`, then create it.
+- If for any reason you are not familiar with the mlx, i refer you check this doc (https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#compilation-on-macos) before continuing. I want us to stay on the same page.
+- Add this program to `test.c`
+```C
+#include "cube3D.h"
+#include <stdio.h>
+
+int main(int ac, char *argv[])
+{
+    if (ac == 2)
+    {
+        t_map_data * recieved;
+        char *map = argv[1];
+        // window;
+        // mlx_init
+        void *mlx_int;
+        void *mlx_win;
+        // mlx_win = 0;
+        t_data img;
+        if (map)
+        {
+            // int i = 0;
+            recieved = ft_extract_map(argv, ac);
+            char **mapp = recieved->map;
+            int row = recieved->row;
+            // printf("%d\n", row);
+            // while(mapp[i])
+            //     printf("%s\n", mapp[i++]);
+            // printf("\n");
+            // int validate = ft_validate_map(mapp);
+            // printf("%d", validate);
+
+            // Let's first configure to open our window
+
+            mlx_int = mlx_init();
+            img.img = mlx_new_image(mlx_int, WIDTH, HEIGHT);
+            img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+            mlx_win = mlx_new_window(mlx_int, HEIGHT, WIDTH, "Cube 3D");
+            ft_draw_2d_map(mapp, mlx_int, mlx_win, row);
+            ft_event_init(mlx_win);
+            mlx_loop(mlx_int);
+    
+
+           
+        }
+    }
+}
+```
 
