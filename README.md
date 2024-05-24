@@ -482,7 +482,7 @@ int ft_validate_map(char **map)
 ```
 ***Let's manage the event***
 At this point i believe you are familiar with the event. In mlx there are several ways we can manage the event. I will not go deep to explain even and whatsoever. I will include comments in the code explaining. 
-##What is `WASD` keys?
-***The WASD keys are a set of four keys on a standard computer keyboard, often used as the primary movement controls in video games. They are typically mapped to movement in games where the mouse controls aiming. "W" typically moves the character or vehicle forward, "A" moves left, "S" moves backward, and "D" moves right. This configuration is popular because it allows for quick and efficient movement while still leaving the player's other hand free to use the mouse for aiming or other actions***
+## What is `WASD` keys?
+****The WASD keys are a set of four keys on a standard computer keyboard, often used as the primary movement controls in video games. They are typically mapped to movement in games where the mouse controls aiming. "W" typically moves the character or vehicle forward, "A" moves left, "S" moves backward, and "D" moves right. This configuration is popular because it allows for quick and efficient movement while still leaving the player's other hand free to use the mouse for aiming or other actions****
 
   
