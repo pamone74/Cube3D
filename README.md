@@ -2,8 +2,18 @@
 Before delving into the details, it's essential to ensure we have all the necessary resources at our disposal, particularly when working with C.<br>
 have at out disposal and as usal, we use C.<br>
 ### There are these terms I might be using frequently so get familiar with it:
-- FOV  `Field of View`
-- FPS  `First Person shooter` 
+### Familiar Terms
+- **FOV**: Field of View
+**FPS**: First Person Shooter. This genre of games allows players to experience the action through the eyes of the protagonist. While it often involves combat or shooting elements, it isn't exclusively about shooting. Think about your perspective right now as you look at your monitor; this is your Field of View (FOV). Your FOV is essentially what your camera sees. Now, imagine you're playing a game where you can only see your character's hands in front of you. This is because the game's camera is positioned as if it were your own eyes, providing a highly immersive experience.
+  
+![FPS](https://github.com/pamone74/Cube3D/assets/140634743/68bf0437-dc8d-46f5-8844-c57d689b8d36)
+
+### simple explanation of FOV and FPS
+In an FPS game, the player's perspective is crucial as it directly influences the gameplay experience. The Field of View (FOV) determines how much of the game world is visible on the screen at any given moment, impacting the player's spatial awareness and immersion.
+
+When creating an FPS game with ray casting, understanding and properly setting up the FOV is essential for realistic rendering and gameplay mechanics. The FOV needs to be wide enough to provide a good view of the surroundings but not so wide that it distorts the perspective.
+
+
   
 ### 📎Let's make sure the miniLibx is installed and working properly.
 According to the provided PDF guide, there are two options for obtaining miniLibX: either using the version available on the operating system (in this case, on an iMac) or acquiring it from its sources. I won't delve into the details here, as there are documentation resources available for both choices.<br>
