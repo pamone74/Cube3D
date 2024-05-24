@@ -2,6 +2,7 @@
 Before delving into the details, it's essential to ensure we have all the necessary resources at our disposal, particularly when working with C.<br>
 have at out disposal and as usal, we use C.<br>
 ### There are these terms I might be using frequently so get familiar with it:
+- **Protagonist**: The main character in a game. Let me say a player's character. 
 - **FOV**: Field of View
 - **FPS**: First Person Shooter. This genre of games allows players to experience the action through the eyes of the protagonist. While it often involves combat or shooting elements, it isn't exclusively about shooting. Think about your perspective right now as you look at your monitor; this is your Field of View (FOV). Your FOV is essentially what your camera sees. Now, imagine you're playing a game where you can only see your character's hands in front of you. This is because the game's camera is positioned as if it were your own eyes, providing a highly immersive experience.
 
