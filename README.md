@@ -161,7 +161,7 @@ Please note that this is a basic map, and I am assuming it is correct with no er
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
 
-1️⃣  : In the `utils.c` file, add this function for extracting the mapdata. Please not that this is absolutely not effecient function but, it will do what we need for now. And add function prototype to the header file
+- 1️⃣  : In the `utils.c` file, add this function for extracting the mapdata. Please not that this is absolutely not effecient function but, it will do what we need for now. And add function prototype to the header file
 `t_map_data* ft_extract_map(char *argv, int ac)`
 ```C
 // ================================================ Extracting map data ===================================================================
@@ -218,12 +218,12 @@ t_map_data* ft_extract_map(char **argv, int ac)
     return 0;
 }
 ```
-2️⃣  : Also Add this functions for drawing line in `utils.`c and ou can add this to the header file `cube3D.h` `void ft_draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)`
+- 2️⃣  : Also Add this functions for drawing line in `utils.`c and ou can add this to the header file `cube3D.h` `void ft_draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)`
 ```C 
 // ====================================== Draw Line Functions ===================================================================
 
 /*
-    Relax, you do not actaully needs this for submission unless otherwise
+    Relax, you do not actaully needs this for submission unless otherwise: You may need this if you are planning for bonus, drawing mini map
     I wish i could explain this in simple term that you can unserstand. But if you know basic of math, that would be better.
     okay, i hvae variables:
         dx (change in x cordinates)
@@ -317,10 +317,8 @@ void ft_draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)
     }
 }
 ```
+- 3️⃣ : Once all components are functioning properly, we can proceed to test our 2D map. To do this, add the following main function to the file test.c. If you don't have a test.c file, create one. Before continuing, ensure you're familiar with MiniLibX by referring to the documentation provided here (https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#compilation-on-macos).
 
-If every things are woring just fine, then we can go ahead and test our 2D map. if file `test.c`, add this main functions below: if you do not have `test.c`, then create it.
-- If for any reason you are not familiar with the mlx, i refer you check this doc (https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html#compilation-on-macos) before continuing. I want us to stay on the same page.
-- Add this program to `test.c`
 ```C
 #include "cube3D.h"
 #include <stdio.h>
@@ -366,4 +364,5 @@ int main(int ac, char *argv[])
     }
 }
 ```
+#### This is the screen shot of how our 2D map should look like:
 
