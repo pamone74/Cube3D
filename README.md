@@ -355,7 +355,6 @@ int main(int ac, char *argv[])
             img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
             mlx_win = mlx_new_window(mlx_int, HEIGHT, WIDTH, "Cube 3D");
             ft_draw_2d_map(mapp, mlx_int, mlx_win, row);
-            ft_event_init(mlx_win);
             mlx_loop(mlx_int);
     
 
