@@ -357,7 +357,8 @@ int main(int ac, char *argv[])
 ```
 #### This is the screen shot of how our 2D map should look like:
 If you follow each steps well., you should be able to see something like this. 
-- ⭐ **the small quare you see, is our player**: Later on, in our map data we indicate N, meaning the player should face North wall, relax for now, we shall get there. Again as i said earlier, we are starting from beginners level to perfect work meaning we need to underatand each steps well. 
+- ⭐ **the small quare you see, is our player**: Later on, in our map data we indicate N, meaning the player should face North wall, relax for now, we shall get there. Again as i said earlier, we are starting from beginners level to perfect work meaning we need to underatand each steps well.
+   
 ![Screenshot from 2024-05-24 20-52-55](https://github.com/pamone74/Cube3D/assets/140634743/ba89bde2-0887-4656-9c28-cb61a3d20bd6)
 
 
@@ -456,7 +457,7 @@ int ft_validate_map(char **map)
 }
 
 ```
-***Now its a good timw to update out `test.c` we need to make sure the map is valid before even thinking of openning the window***
+***Now its a good time to update our `test.c` we need to make sure the map is valid before even thinking of openning the window***
 - update the `test.c`, add conditional if, and all the window related programs should be inside if block.
 ```C
  // check if the map is valid: if its is not valid no need to open the window
