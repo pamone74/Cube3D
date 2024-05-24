@@ -195,15 +195,15 @@ void draw_rect(void *mlx, void *win, int x, int y, int size)
 }
 
 // Now we draw our 2D map using this function:
-void draw_2d_map(t_data data, void *mlx_ptr, void *win_ptr)
+void draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)
 {
   int x = 0;
   int y;
   // The map is in 2D, with row and column, where row is the height and width is the column. So this loop  will loops through the map:
-  while(i < width)
+  while(i < row)
   {
     y =0;
-    while(y < height)
+    while(y < (int)strlen(tilemap[x]))  // I am type casting the strlen() to int beacause it returns size_t and out y is int. You can save yourself by making y, size_t
     {
       if(tilemap[x][y]) == 1
         draw_rect(mlx_ptr, win_ptr, x * 50, 50); // I have decided to give the tile size of 50
