@@ -481,3 +481,7 @@ int ft_validate_map(char **map)
                 printf("oops not valid\n");
            }
 ```
+***Let's manage the event***
+At this point i believe you are familiar with the event. In mlx there are several ways we can manage the event. I will not go deep to explain even and whatsoever. I will include comments in the code explaining. 
+
+  
