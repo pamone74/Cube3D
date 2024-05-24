@@ -337,17 +337,9 @@ int main(int ac, char *argv[])
         t_data img;
         if (map)
         {
-            // int i = 0;
             recieved = ft_extract_map(argv, ac);
             char **mapp = recieved->map;
             int row = recieved->row;
-            // printf("%d\n", row);
-            // while(mapp[i])
-            //     printf("%s\n", mapp[i++]);
-            // printf("\n");
-            // int validate = ft_validate_map(mapp);
-            // printf("%d", validate);
-
             // Let's first configure to open our window
 
             mlx_int = mlx_init();
@@ -372,12 +364,119 @@ If you follow each steps well., you should be able to see something like this.
 ### So now our 2D map is ok but the player is static. We do not need that.
 ## Here's what we are going to do next:
 - 🌓 Check map validity: At this point we neet to make sure our map data is valid.
-- 🌓 Event management: Using the WASD keys, arrow keys and destroy window
+- 🌓 Event management: Using the `WASD` keys, arrow keys and destroy window
 - 🌓 Wall collision
 - 🌓 Ray tracing
 
 ## Map validity:
 Alright i have created some basic functions to check for valid map:
-**Copy this and paste it in `utils.c`
+- 🍮 Add these two funtions to `utils.c` and offcourse add the function prototype to the header file
+  
+**Copy this and paste it in `utils.c`**
 ```C
+// ===================================== Validate the map =========================================================
+// validate the map
+int validate_map(char **map)
+{
+    size_t i = 0;
+    int j = 0;
+    size_t count_holder;
+    // count the size of map, we can just pass the row.
+    size_t count = 0;
+    
+    while(map[count])
+        count++;
+    count_holder = count;
+    // printf("%ld\n", count);
+    // check top and bottom rows
+    while(i < strlen(map[j]) && --count_holder)
+    {
+        if(map[0][i] != '1' || map[count-1][i] != '1')
+        {
+            printf("Invalid map Wall not closed top and bottom\n");
+            // printf("Invalid map 1 map[0][%ld] = %c map[%ld][%ld]) = %c\n", i, map[0][i] ,count-1,i, map[count-1][i]);
+            return 0;
+        }  
+        i++;
+        j++;
+    }
+    //  check left and right
+    i = 0;
+    while(i < count)
+    {
+        if(map[i][0] != '1' || map[i][strlen(map[i])-1] != '1')
+        {
+            printf("Invalid map Wall not closed left and right\n");
+            return 0;
+        }
+        //  for whatever reason, it was not checking the last corner
+        if (i == count -1)
+        {
+            if(map[i][0] != '1' || map[i][strlen(map[i])-1] != '1')
+            {
+                printf("Invalid map Wall not closed \n");
+                return 0;
+            }
+        }
+        i++;
+    }
+    return 1;
+}
+// checking for players position and invalid characters
+int ft_validate_map(char **map)
+{
+    int i = 0;
+    int flag = 0;
+    while (map[i])
+    {
+       int j = 0;
+       while(map[i][j])
+       {
+            if(strchr("NWSE", map[i][j]))
+            {
+                if(flag)
+                {
+                    printf("Players position cannot be more than one\n");
+                    return 0;
+                }
+                else
+                    flag = 1;
+            }
+            else if(!strchr("NWSE01", map[i][j]))
+            {
+                printf("Invalid Character found on the map %c pos = %d %d\n", map[i][j], i ,j);
+                return 0;
+            }
+                
+            j++;
+       }
+       i++;
+    }
+    return 1;
+}
+
+```
+***Now its a good timw to update out `test.c` we need to make sure the map is valid before even thinking of openning the window***
+- update the `test.c`, add conditional if, and all the window related programs should be inside if block.
+```C
+ // check if the map is valid: if its is not valid no need to open the window
+            // we should make sure that the mapp is not empty
+            if (ft_validate_map(mapp) && validate_map(mapp) && mapp)
+            {
+
+            // Let's first configure to open our window
+
+                mlx_int = mlx_init();
+                img.img = mlx_new_image(mlx_int, WIDTH, HEIGHT);
+                img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+                mlx_win = mlx_new_window(mlx_int, HEIGHT, WIDTH, "Cube 3D");
+                ft_draw_2d_map(mapp, mlx_int, mlx_win, row);
+                ft_event_init(mlx_win);
+                mlx_loop(mlx_int);
+            }
+            else
+           {
+		// here we can free all the memory that we have allocated either directly or indirectly then maybe we return. Lets save that for another time
+                printf("oops not valid\n");
+           }
 ```
