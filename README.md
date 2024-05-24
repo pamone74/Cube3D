@@ -141,8 +141,8 @@ Please note that this is a basic map, and I am assuming it is correct with no er
 	C 0,0,255
 
 	11111111111111
-	1001000E000001
-	10000000000011
+	10010000000001
+	1000000N000011
 	11000010000001
 	10000010000001
 	10000000010001
@@ -364,4 +364,6 @@ int main(int ac, char *argv[])
 }
 ```
 #### This is the screen shot of how our 2D map should look like:
+![Screenshot from 2024-05-24 20-52-55](https://github.com/pamone74/Cube3D/assets/140634743/ba89bde2-0887-4656-9c28-cb61a3d20bd6)
+
 
