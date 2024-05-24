@@ -160,6 +160,63 @@ Please note that this is a basic map, and I am assuming it is correct with no er
 #### Drawing Our 2D Map on the GUI or window
 This step might seem redundant, but it is crucial for grasping what we are doing here and, more importantly, for understanding ray casting. As I couldn't find a straightforward method to draw lines using the MiniLibX library, I implemented Bresenham's line drawing algorithm to render the 2D map. I won't go into detail about the algorithm here, but you can learn more about it from this (https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/). 
 
+1️⃣ In the `utils.c` file, add this function for extracting the mapdata. Please not that this is absolutely not effecient function but, it will do what we need for now. And add function prototype to the header file
+- `t_map_data* ft_extract_map(char *argv, int ac)`
+```C
+/*
+
+    Please note that this is not effecient way of extracting map data, as i am assuming that everything is fine with the map: 
+    But for better parsing, you may need to skip some empty spaces. You can use split() function, but later on, i will psuh the complete project later.
+*/
+t_map_data* ft_extract_map(char **argv, int ac)
+{
+    t_map_data *memory;
+    memory = malloc(sizeof(t_map_data));
+    if (!memory)
+        return 0;
+    if(ac == 2)
+    {
+        char *line = 0;
+        int fd = open(argv[1],O_RDONLY);
+        if(fd == -1)
+            return 0;
+        int i = 0;
+        // to get the actual size we can allocate for the map, we may need to know  the row and column (r * c)
+        // for now i am assuming that the size of row and column is 100: Absolutely it not recomended, it is not good approach to allocate the memory. 
+        memory->map = malloc(sizeof(char *) * 100);
+        if(!memory->map)
+            return 0;
+        while(1)
+        {
+            line = get_next_line(fd);
+            // As you can notice, i am using strdup() this is beacuse i am freeing the line * in every iteration meaning that i will have null so to maintain it
+            // we need to duplicate the value.
+            if(line && strncmp(line, "NO", 2) == 0)
+                memory->NO = strdup(line);
+            if(line && strncmp(line, "SO", 2) == 0)
+            // we can add more for the textures here
+                memory->SO = strdup(line);
+            if(line && strncmp(line, "F", 1) == 0)
+                memory->color_floor = atoi(strdup(line+2));
+            if(line && line[0] == 49)  
+            {
+                char **splted = ft_split(ft_strdup(line), '\n');
+                memory->map[i++] = splted[0];
+                memory->row += 1;
+
+            }
+                
+            free(line);
+            if(!line)
+                break;
+        }
+        close(fd);
+        return memory;
+    }
+    return 0;
+}
+```
+2️⃣ Also Add this functions for drawing line in `utils.` 
 ```C 
 void draw_line(void *mlx, void *win, int x0, int y0, int x1, int y1)
 {
