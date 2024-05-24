@@ -168,7 +168,7 @@ This step might seem redundant, but it is crucial for grasping what we are doing
 /*
 
     Please note that this is not effecient way of extracting map data, as i am assuming that everything is fine with the map: 
-    But for better parsing, you may need to skip some empty spaces. You can use split() function, but later on, i will psuh the complete project later.
+    But for better parsing, you may need to skip some empty spaces. You can use split() function, but later on, i will push the complete project later.
 */
 t_map_data* ft_extract_map(char **argv, int ac)
 {
@@ -218,14 +218,14 @@ t_map_data* ft_extract_map(char **argv, int ac)
     return 0;
 }
 ```
-- 2️⃣  : Also Add this functions for drawing line in `utils.`c and ou can add this to the header file `cube3D.h` `void ft_draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)`
+- 2️⃣  : Also Add this functions for drawing line in `utils.`c and you can add this to the header file `cube3D.h` `void ft_draw_2d_map(char **tilemap, void *mlx_ptr, void *win_ptr, int row)`
 ```C 
 // ====================================== Draw Line Functions ===================================================================
 
 /*
     Relax, you do not actaully needs this for submission unless otherwise: You may need this if you are planning for bonus, drawing mini map
     I wish i could explain this in simple term that you can unserstand. But if you know basic of math, that would be better.
-    okay, i hvae variables:
+    okay, i have variables:
         dx (change in x cordinates)
         dy (changes in y cordinates)
 
@@ -235,7 +235,7 @@ t_map_data* ft_extract_map(char **argv, int ac)
     is the slope of the line and  c  is the y-intercept. In the case of computer graphics, we're dealing with pixels on a screen, 
     so  we don't directly use this equation. Instead, we use discrete points to approximate the line.
 
-    Here's how yvariables relate to this equation:
+    Here's how variables relate to this equation:
     -  dx  represents the change in the x-coordinates of the two points, which is analogous to the change in the x-values of the equation.
     -  dy  represents the change in the y-coordinates of the two points, which is analogous to the change in the y-values of the equation.
     So, if we were to write the slope  m  using these variables, it would be  m = dy/dx.
