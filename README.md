@@ -485,7 +485,7 @@ At this point i believe you are familiar with the event. In mlx there are severa
 ## What is `WASD` keys?
 The WASD keys are a set of four keys on a standard computer keyboard, often used as the primary movement controls in video games. They are typically mapped to movement in games where the mouse controls aiming. "W" typically moves the character or forward, "A" moves left, "S" moves backward, and "D" moves right. This configuration is popular because it allows for quick and efficient movement while still leaving the player's other hand free to use the mouse for aiming or other actions..
 
-###Mlx Events
+### Mlx Events
 Events are actions tiggered when a user interacts with the keyboards, such as pressing, or releasing the keys. So handling the event is capturing the user's input and responding accordingly. 
 - In mlx, we can use mlx_hook(win_ptr, x_event, mask, function_handler, param)
   	- 🌓 The parameter `x_event` represents the key of the event for example `02` is the key for `KeyPress` event.
@@ -507,8 +507,8 @@ To to this we need a function `ft_event_init(t_window *mlx)`
 - ℹ️ Before we go to far, i want you to know that i have modified and update some funtioons, i have added structs to the header and so to make our work easier, i will include the updated files here `utils.c` `test.c` and `cube3d.h` I have included comments for every changes i have made. you can unserstand more from the comments.
 - Alright let me first talk about how i hanlde the event and manage to let `WASD` keys to work
 
-  ###Check the pic below.
-  ![Screenshot from 2024-05-25 16-42-16](https://github.com/pamone74/Cube3D/assets/140634743/2ad1875a-8ee8-4967-91df-5367e87dc1fd)
-
+  ### Check the pic below.
   
+  ![Screenshot from 2024-05-25 19-50-18](https://github.com/pamone74/Cube3D/assets/140634743/3c77d9a0-e49f-4203-a9f1-49188c1cd7ac)
+
 
