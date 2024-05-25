@@ -507,8 +507,79 @@ To to this we need a function `ft_event_init(t_window *mlx)`
 - ℹ️ Before we go to far, i want you to know that i have modified and update some funtioons, i have added structs to the header and so to make our work easier, i will include the updated files here `utils.c` `test.c` and `cube3d.h` I have included comments for every changes i have made. you can unserstand more from the comments.
 - Alright let me first talk about how i hanlde the event and manage to let `WASD` keys to work
 
-  ### Check the pic below.
+  ### Check the screen shot below.
   
   ![Screenshot from 2024-05-25 19-50-18](https://github.com/pamone74/Cube3D/assets/140634743/3c77d9a0-e49f-4203-a9f1-49188c1cd7ac)
+
+  ***By using the above infomation, we can then control the players movement effectively.
+  - I have `ft_event_init` function that will call `mlx_hook`
+```C
+void ft_event_init(t_window *mlx)
+{
+   
+    if (mlx->mlx_win)
+	// Key Event
+        mlx_hook(mlx->mlx_win, 02, 1L << 0, ft_key_handle,mlx);
+}
+```
+  - check out the function handler below for KEY press event:
+  ```C
+int ft_key_handle(int keyssys, t_window *mlx)
+{
+    // i will create struct for these variable later on
+    double sin_a = sin(PLAYER_ANGLE);
+    double cos_a = cos(PLAYER_ANGLE);
+    double dx = 0.0;
+    double dy = 0.0;
+    double speed_sin = sin_a * PLAYER_SPEED;
+    double speed_cos = cos_a * PLAYER_SPEED;
+    // if your are not sure about the KEY, just print the keyssys for every key you press then you will know the value. 
+    // Keep in mind that these key values are never the same
+    // escape key
+    if (keyssys == 65307)
+        exit(0);
+    // W key
+    else if(keyssys == 119)
+    {
+        dx += speed_cos;
+        dy += speed_sin;
+    }
+    // A
+    else if(keyssys == 97)
+    {
+        dx += speed_sin;
+        dy -= speed_cos;
+    }
+    // S
+    else if(keyssys == 115)
+    {
+        dx += -speed_cos;
+        dy += -speed_sin;
+    }
+    // D 
+    else if(keyssys == 100)
+    {
+        dx += -speed_sin;
+        dy += speed_cos;
+    }
+    mlx->player_pos_x += dx;
+    mlx->player_pos_y += dy;
+    // left key
+    if (keyssys == 65361)
+        mlx->player_angle -= PLAYER_ROT_SPEED;
+    // Right Key
+    if (keyssys == 65363)
+        mlx->player_angle += PLAYER_ROT_SPEED;
+    mlx->player_angle = fmod(mlx->player_angle, 2 * PI);
+    if (mlx->player_angle < 0)
+        mlx->player_angle += 2 * PI; // Ensure angle is positive
+    // For every key we press the player's position needs to be update, i do not kmow if clearing the window is the best thing to do but i will update as i go along
+    mlx_clear_window(mlx->mlx_ptr, mlx->mlx_win);
+    ft_render(mlx);
+    return 0;
+
+}
+
+  ```
 
 
