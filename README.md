@@ -1,6 +1,6 @@
 ## My First RayCaster Using miniLibX
-Before delving into the details, it's essential to ensure we have all the necessary resources at our disposal, particularly when working with C.<br>
-have at out disposal and as usal, we use C.<br>
+Before delving into the details, it's essential to ensure we have all the necessary resources at our disposal, particularly when working with C
+
 ### There are these terms I might be using frequently so get familiar with it:
 - **Protagonist**: The main character in a game. Let me say a player's character. 
 - **FOV**: Field of View
@@ -364,7 +364,7 @@ If you follow each steps well., you should be able to see something like this.
 
 ### So now our 2D map is ok but the player is static. We do not need that.
 ***Here's what we are going to do next***:
-- 🌓 Check map validity: At this point we neet to make sure our map data is valid.
+- 🌓 Check map validity: At this point we need to make sure our map data is valid.
 - 🌓 Event management: Using the `WASD` keys, arrow keys and destroy window
 - 🌓 Wall collision
 - 🌓 Ray tracing
@@ -485,4 +485,20 @@ At this point i believe you are familiar with the event. In mlx there are severa
 ## What is `WASD` keys?
 The WASD keys are a set of four keys on a standard computer keyboard, often used as the primary movement controls in video games. They are typically mapped to movement in games where the mouse controls aiming. "W" typically moves the character or forward, "A" moves left, "S" moves backward, and "D" moves right. This configuration is popular because it allows for quick and efficient movement while still leaving the player's other hand free to use the mouse for aiming or other actions..
 
+###Mlx Events
+Events are actions tiggered when a user interacts with the keyboards, such as pressing, or releasing the keys. So handling the event is capturing the user's input and responding accordingly. 
+- In mlx, we can use mlx_hook(win_ptr, x_event, mask, function_handler, param)
+  	- 🌓 The parameter `x_event` represents the key of the event for example `02` is the key for `KeyPress` event.
+  	  ***Frpm the picture below, notice the row for Key, those are the key for the events***
+
+	![Screenshot from 2024-05-25 18-56-49](https://github.com/pamone74/Cube3D/assets/140634743/4f808ee6-8ec6-4bb9-b425-f7925f046107)
+
+	- 🌓 The parameter `mask` specify the event mask. This way you can only register to only one event when it is triggered or to all keys if you leave your mask to default. 
+
+ 	 ![Screenshot from 2024-05-25 18-57-10](https://github.com/pamone74/Cube3D/assets/140634743/1a7aa0b8-61a8-4a3e-88ec-3a805d0da87a)
+
+	- 🌓 The parameter `function_handler` specifies the function that will be called when the event is triggered. For example if we have used `02` and the mask of `1L<<0` for key press event, we can then use appropaite key event prototype for the key. if you look the prototype for `ON_KEYDOWN and ON_KEYUP` have same function prototye meaning we can use this prototyp to handle any kind of key event.
+
   
+	![Screenshot from 2024-05-25 18-57-34](https://github.com/pamone74/Cube3D/assets/140634743/db437833-b866-4d76-9ca0-b1794f384dce)
+
