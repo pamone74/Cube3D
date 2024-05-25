@@ -502,3 +502,13 @@ Events are actions tiggered when a user interacts with the keyboards, such as pr
   
 	![Screenshot from 2024-05-25 18-57-34](https://github.com/pamone74/Cube3D/assets/140634743/db437833-b866-4d76-9ca0-b1794f384dce)
 
+***Alright Let's go ahead and hanlde the event***
+To to this we need a function `ft_event_init(t_window *mlx)` 
+- ℹ️ Before we go to far, i want you to know that i have modified and update some funtioons, i have added structs to the header and so to make our work easier, i will include the updated files here `utils.c` `test.c` and `cube3d.h` I have included comments for every changes i have made. you can unserstand more from the comments.
+- Alright let me first talk about how i hanlde the event and manage to let `WASD` keys to work
+
+  ###Check the pic below.
+  ![Screenshot from 2024-05-25 16-42-16](https://github.com/pamone74/Cube3D/assets/140634743/2ad1875a-8ee8-4967-91df-5367e87dc1fd)
+
+  
+
