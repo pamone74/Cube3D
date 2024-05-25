@@ -1082,4 +1082,4 @@ void ft_data_init(t_window *mlx)
 ```
 
 
-# Next this is checking wall collison 
+# Next thing is checking wall collison 
