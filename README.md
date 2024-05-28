@@ -362,6 +362,7 @@ If you follow each steps well., you should be able to see something like this.
 ![Screenshot from 2024-05-24 20-52-55](https://github.com/pamone74/Cube3D/assets/140634743/ba89bde2-0887-4656-9c28-cb61a3d20bd6)
 
 
+***Note that if you want to the window to be equall to the map drawn, you should be calculate the tiles * wall widths and heights.***
 ### So now our 2D map is ok but the player is static. We do not need that.
 ***Here's what we are going to do next***:
 - 🌓 Check map validity: At this point we need to make sure our map data is valid.
@@ -998,7 +999,7 @@ int ft_key_handle(int keyssys, t_window *mlx)
 // ============================================================ Render the window ===============================================================
 
 /*
-    This function is pretty simple, we need to draw out 2d map, player's position, players driection. simple
+    This function is pretty simple, we need to draw our 2d map, player's position, players driection. simple
 */
 void ft_render(t_window * mlx)
 {
@@ -1033,7 +1034,7 @@ void ft_game_init(t_window *mlx)
         exit(EXIT_FAILURE);
     }
     // window
-    // i want my image to be displayed horizontally so i will use height fot width and width for height
+    // i want my image to be displayed horizontally so i will use height for the  width and width for height
     mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, HEIGHT, WIDTH, "CUBE 3D");
     if (!mlx->mlx_win)
     {
